@@ -28,27 +28,27 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/d4">
 
-                <RadioButton android:id="@+id/radioButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R1" android:layout_weight="0.2"/>
-                <RadioButton android:id="@+id/radioButton2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R2" android:layout_weight="0.2"/>
-                <RadioButton android:id="@+id/radioButton3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R3" android:layout_weight="0.2"/>
-                <RadioButton android:id="@+id/radioButton4" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R4" android:layout_weight="0.2"/>
-                <RadioButton android:id="@+id/radioButton5" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R5" android:layout_weight="0.2"/>
+                <RadioButton android:buttonTint="@color/orange" android:id="@+id/radioButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R1" android:layout_weight="0.2"/>
+                <RadioButton android:buttonTint="@color/orange" android:id="@+id/radioButton2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R2" android:layout_weight="0.2"/>
+                <RadioButton android:buttonTint="@color/orange" android:id="@+id/radioButton3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R3" android:layout_weight="0.2"/>
+                <RadioButton android:buttonTint="@color/orange" android:id="@+id/radioButton4" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R4" android:layout_weight="0.2"/>
+                <RadioButton android:buttonTint="@color/orange" android:id="@+id/radioButton5" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R5" android:layout_weight="0.2"/>
             </LinearLayout>
             <LinearLayout
                 android:background="@color/cardview_light_background"
                 android:orientation="horizontal" android:padding="@dimen/d4" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="3dp">
-                <RadioButton android:id="@+id/radioButton6" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R6" android:layout_weight="0.2"/>
-                <RadioButton android:id="@+id/radioButton7" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R7" android:layout_weight="0.2"/>
-                <RadioButton android:id="@+id/radioButton8" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R8" android:layout_weight="0.2"/>
-                <RadioButton android:id="@+id/radioButton9" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R9" android:layout_weight="0.2"/>
-                <RadioButton android:id="@+id/radioButton10" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R10" android:layout_weight="0.2"/>
+                <RadioButton android:buttonTint="@color/red" android:id="@+id/radioButton6" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R6" android:layout_weight="0.2"/>
+                <RadioButton android:buttonTint="@color/red" android:id="@+id/radioButton7" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R7" android:layout_weight="0.2"/>
+                <RadioButton android:buttonTint="@color/red" android:id="@+id/radioButton8" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R8" android:layout_weight="0.2"/>
+                <RadioButton android:buttonTint="@color/red" android:id="@+id/radioButton9" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R9" android:layout_weight="0.2"/>
+                <RadioButton android:buttonTint="@color/red" android:id="@+id/radioButton10" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R10" android:layout_weight="0.2"/>
             </LinearLayout>
             <LinearLayout
                 android:background="@color/cardview_light_background"
                 android:orientation="horizontal" android:padding="@dimen/d4" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="3dp">
-                <RadioButton android:id="@+id/radioButton11"  android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R11" android:layout_weight="0.3"/>
-                <RadioButton android:id="@+id/radioButton12" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R12" android:layout_weight="0.4"/>
-                <RadioButton android:id="@+id/radioButton13"  android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R13" android:layout_weight="0.3"/>
+                <RadioButton android:buttonTint="@color/purple_500" android:id="@+id/radioButton11"  android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R11" android:layout_weight="0.3"/>
+                <RadioButton android:buttonTint="@color/purple_500" android:id="@+id/radioButton12" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R12" android:layout_weight="0.4"/>
+                <RadioButton android:buttonTint="@color/purple_500" android:id="@+id/radioButton13"  android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R13" android:layout_weight="0.3"/>
             </LinearLayout>
         </LinearLayout>
         <LinearLayout

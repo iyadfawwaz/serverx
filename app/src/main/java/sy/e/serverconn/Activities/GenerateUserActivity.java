@@ -62,9 +62,17 @@ public class GenerateUserActivity extends AppCompatActivity {
 
         button.setOnClickListener(new OnClickListener() {
             public void onClick(View view) {
-                int ad = Integer.parseInt(GenerateUserActivity.this.adet.getText().toString());
-                int pass = Integer.parseInt(GenerateUserActivity.this.plength.getText().toString());
-                createUsers(ad, Integer.parseInt(ulength.getText().toString()), prefix.getText().toString(), pass);
+
+                try {
+
+                    int ad = Integer.parseInt(adet.getText().toString());
+                    int pass = Integer.parseInt(plength.getText().toString());
+
+                    createUsers(ad, Integer.parseInt(ulength.getText().toString()), prefix.getText().toString(), pass);
+                } catch (NumberFormatException e) {
+
+                    textView.setText(e.getMessage());
+                }
             }
         });
     }
@@ -81,6 +89,7 @@ public class GenerateUserActivity extends AppCompatActivity {
     }
 
     private void loadProfiles() {
+
         MikrotikServer.execute(USER_PROFILES).addExecutionEventListener(new ExecutionEventListener() {
 
             public void onExecutionSuccess(List<Map<String, String>> mapList) {
@@ -99,6 +108,8 @@ public class GenerateUserActivity extends AppCompatActivity {
     }
 
     private void createUsers(int adet, int userLength, String prefix, int passwordLenth) {
+
+
         for (int j = 0; j < adet; j++) {
 
             String username = prefix + new UsersIntRandom().ditectRand(userLength);

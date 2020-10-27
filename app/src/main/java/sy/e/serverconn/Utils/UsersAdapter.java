@@ -1,6 +1,7 @@
 package sy.e.serverconn.Utils;
 
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
@@ -28,11 +29,12 @@ public class UsersAdapter extends Adapter<UsersHolder> {
 
     }
 
+    @SuppressLint("SetTextI18n")
     public void onBindViewHolder(@NonNull UsersHolder holder, int position) {
 
         Users users = arrayList.get(position);
-        holder.userArea.setText(users.getUsername());
-        holder.passArea.setText(users.getPassword());
+        holder.userArea.setText(""+users.getUsername());
+        holder.passArea.setText(""+users.getPassword());
         holder.profArea.setText(users.getProfile());
 
     }

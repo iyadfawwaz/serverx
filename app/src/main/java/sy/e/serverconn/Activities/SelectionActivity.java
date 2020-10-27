@@ -9,6 +9,8 @@ import android.view.View.OnLongClickListener;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.Iterator;
 import java.util.List;
@@ -51,11 +53,11 @@ public class SelectionActivity extends AppCompatActivity {
 
     private class ReUptade extends Thread {
 
-        public String cmdx;
-        public String keys;
-        public TextView textViewx;
+        private String cmdx;
+        private String keys;
+        private TextView textViewx;
 
-        public ReUptade(TextView textViewx, String cmdx, String keys) {
+        public ReUptade(@NonNull TextView textViewx,@NonNull String cmdx,@NonNull String keys) {
 
             this.textViewx = textViewx;
             this.cmdx = cmdx;
@@ -66,7 +68,7 @@ public class SelectionActivity extends AppCompatActivity {
         public void run() {
             try {
                 Thread.sleep(1000);
-                SelectionActivity.this.runOnUiThread(new Runnable() {
+                runOnUiThread(new Runnable() {
                     public void run() {
                         MikrotikServer.execute(cmdx).addExecutionEventListener(new ExecutionEventListener() {
                             public void onExecutionSuccess(List<Map<String, String>> mapList) {
@@ -92,7 +94,8 @@ public class SelectionActivity extends AppCompatActivity {
     }
 
     class TaskLeds implements Runnable {
-        TaskLeds() {
+
+       public TaskLeds() {
         }
 
         public void run() {
@@ -100,10 +103,13 @@ public class SelectionActivity extends AppCompatActivity {
                 try {
                     //noinspection BusyWait
                     Thread.sleep(1000);
-                    SelectionActivity.this.runOnUiThread(new Runnable() {
+
+                    runOnUiThread(new Runnable() {
+
                         public void run() {
                             turnOnOffLeds();
                         }
+
                     });
                 } catch (InterruptedException e) {
                     cput.setText(e.getMessage());

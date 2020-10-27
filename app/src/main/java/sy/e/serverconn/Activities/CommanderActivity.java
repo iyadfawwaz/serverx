@@ -1,6 +1,7 @@
 package sy.e.serverconn.Activities;
 
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -69,6 +70,7 @@ public class CommanderActivity extends AppCompatActivity {
         init();
 
         MikrotikServer.execute(command).addExecutionEventListener(new ExecutionEventListener() {
+            @SuppressLint("SetTextI18n")
             public void onExecutionSuccess(@NonNull List<Map<String, String>> mapList) {
 
                 if (key.equals("")) {
@@ -79,8 +81,11 @@ public class CommanderActivity extends AppCompatActivity {
 
                 for (Map<String, String> map : mapList) {
 
-                    if (!map.get(key).isEmpty())
-                       arrayList.add(map.get(key));
+                    if (!map.get(key).isEmpty()) {
+                        arrayList.add(map.get(key));
+                    }else {
+                        textView.setText("empty");
+                    }
                     }
                 }
                 adapter.notifyDataSetChanged();
