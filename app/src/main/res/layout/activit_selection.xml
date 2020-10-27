@@ -7,25 +7,26 @@
     <LinearLayout
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="5dp"
+        android:padding="@dimen/d4"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="8dp">
+        android:layout_margin="@dimen/d5">
 
         <LinearLayout
             android:orientation="vertical"
             android:background="@color/teal_700"
-            android:padding="2dp"
+            android:padding="@dimen/d4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="55dp">
+            android:layout_marginBottom="@dimen/d4">
 
             <LinearLayout
+                android:background="@color/cardview_light_background"
                 android:orientation="horizontal"
-                android:padding="4dp"
+                android:padding="@dimen/d4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="3dp">
+                android:layout_margin="@dimen/d4">
 
                 <RadioButton android:id="@+id/radioButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R1" android:layout_weight="0.2"/>
                 <RadioButton android:id="@+id/radioButton2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R2" android:layout_weight="0.2"/>
@@ -33,21 +34,39 @@
                 <RadioButton android:id="@+id/radioButton4" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R4" android:layout_weight="0.2"/>
                 <RadioButton android:id="@+id/radioButton5" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R5" android:layout_weight="0.2"/>
             </LinearLayout>
-            <LinearLayout android:orientation="horizontal" android:padding="4dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="3dp">
+            <LinearLayout
+                android:background="@color/cardview_light_background"
+                android:orientation="horizontal" android:padding="@dimen/d4" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="3dp">
                 <RadioButton android:id="@+id/radioButton6" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R6" android:layout_weight="0.2"/>
                 <RadioButton android:id="@+id/radioButton7" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R7" android:layout_weight="0.2"/>
                 <RadioButton android:id="@+id/radioButton8" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R8" android:layout_weight="0.2"/>
                 <RadioButton android:id="@+id/radioButton9" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R9" android:layout_weight="0.2"/>
                 <RadioButton android:id="@+id/radioButton10" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R10" android:layout_weight="0.2"/>
             </LinearLayout>
-            <LinearLayout android:orientation="horizontal" android:padding="4dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="3dp">
+            <LinearLayout
+                android:background="@color/cardview_light_background"
+                android:orientation="horizontal" android:padding="@dimen/d4" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="3dp">
                 <RadioButton android:id="@+id/radioButton11"  android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R11" android:layout_weight="0.3"/>
                 <RadioButton android:id="@+id/radioButton12" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R12" android:layout_weight="0.4"/>
                 <RadioButton android:id="@+id/radioButton13"  android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R13" android:layout_weight="0.3"/>
             </LinearLayout>
         </LinearLayout>
-        <LinearLayout android:orientation="horizontal"  android:padding="5dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="5dp" android:layout_marginBottom="30dp">
-            <TextView android:textColor="#c22c44" android:gravity="center" android:layout_gravity="center" android:layout_width="0dp" android:layout_height="wrap_content" android:text="المعالج" android:layout_weight="0.3"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:padding="@dimen/d4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/d4"
+            android:layout_marginBottom="@dimen/d4">
+
+            <TextView
+                android:textColor="#c22c44"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/cpu"
+                android:layout_weight="0.3"/>
             <TextView android:textColor="#c22c44" android:gravity="center" android:layout_gravity="center" android:layout_width="0dp" android:layout_height="wrap_content" android:text="وقت التشغيل" android:layout_weight="0.3"/>
             <TextView android:textColor="#c22c44" android:gravity="center" android:layout_gravity="center" android:layout_width="0dp" android:layout_height="wrap_content" android:text="فولط البطارية" android:layout_weight="0.3"/>
         </LinearLayout>
@@ -56,8 +75,18 @@
             <TextView android:textColor="#c22c44" android:gravity="center" android:layout_gravity="center" android:id="@+id/uptime" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="0.3"/>
             <TextView android:textColor="#c22c44" android:gravity="center" android:layout_gravity="center" android:id="@+id/voltage" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="0.3"/>
         </LinearLayout>
-        <Button android:textColor="@color/white" android:id="@+id/commandact"  android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="سطر الاوامر"/>
-        <Button android:textColor="@color/white" android:id="@+id/usergenact"  android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="انتاج مستخدمي يوزرماناجر"/>
+        <Button
+            android:backgroundTint="@color/red"
+            android:textColor="@color/white"
+            android:id="@+id/commandact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/cmd"/>
+
+        <Button
+            android:backgroundTint="@color/orange"
+            android:textColor="@color/white" android:id="@+id/usergenact"  android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="انتاج مستخدمي يوزرماناجر"/>
         <Button android:textColor="@color/white" android:id="@+id/logger" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="تشغيل المستعرض"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

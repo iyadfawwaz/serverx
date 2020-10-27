@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,11 +48,8 @@ public class CommanderActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String ke = keyg.getText().toString();
                 String co = comm.getText().toString();
-                if (ke.trim().length() <= 0) {
-                    sendComm(co, "");
-                } else {
+
                     sendComm(co, ke);
-                }
             }
         });
     }
@@ -59,24 +57,37 @@ public class CommanderActivity extends AppCompatActivity {
         arrayList = new ArrayList<>();
         adapter = new ServerAdapter(this, arrayList);
         listView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
     }
 
     private void sendComm(String command, final String key) {
-        this.adapter.clear();
+
+        adapter.clear();
+        arrayList.clear();
+
+        init();
+
         MikrotikServer.execute(command).addExecutionEventListener(new ExecutionEventListener() {
-            public void onExecutionSuccess(List<Map<String, String>> mapList) {
+            public void onExecutionSuccess(@NonNull List<Map<String, String>> mapList) {
+
+                if (key.equals("")) {
+
+                    arrayList.add(mapList.toString());
+
+                }else {
+
                 for (Map<String, String> map : mapList) {
-                    if (key.equals("")) {
-                        arrayList.add(map.toString());
-                    } else {
+
+                    if (!map.get(key).isEmpty())
                        arrayList.add(map.get(key));
                     }
                 }
                 adapter.notifyDataSetChanged();
             }
 
-            public void onExecutionFailed(Exception exp) {
-               textView.setText(exp.getMessage());
+            public void onExecutionFailed(@NonNull Exception exception) {
+               textView.setText(exception.getMessage());
             }
         });
     }

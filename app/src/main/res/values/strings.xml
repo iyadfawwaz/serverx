@@ -3,4 +3,13 @@
     <string name="PROF">الملف المستخدم</string>
     <string name="PASS">كلمة المرور</string>
     <string name="USER">اسم المستخدم</string>
+    <string name="ip">عنوان ip</string>
+    <string name="user">المستخدم</string>
+    <string name="pass">كلمة المرور</string>
+    <string name="log">دخول</string>
+    <string name="cmd">سطر الاوامر</string>
+    <string name="cpu">المعالج</string>
+    <string name="va">القيمة</string>
+    <string name="se">ارسال الامر</string>
+    <string name="cm">الامر</string>
 </resources>

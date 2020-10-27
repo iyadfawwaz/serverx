@@ -2,31 +2,133 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="7dp"
+        android:background="@color/cardview_dark_background"
+        android:id="@+id/linx"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="8dp">
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:background="@drawable/shapeme"
-            android:padding="4dp"
-            android:focusableInTouchMode="true"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="7dp">
+            android:background="@color/cardview_shadow_end_color"
+            android:layout_height="match_parent">
 
-            <TextView
-                android:textColor="@color/teal_700" android:id="@+id/textView" android:background="@color/white" android:layout_width="match_parent" android:layout_height="wrap_content" android:fontFamily="serif-monospace"/>
-            <EditText android:id="@+id/ip" android:background="@color/white" android:padding="3dp" android:focusableInTouchMode="true" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="5dp" android:hint="عنوان ip" android:ems="10" android:inputType="textPersonName" android:fontFamily="monospace"/>
-            <EditText android:id="@+id/admin" android:background="@color/white" android:padding="7dp" android:focusableInTouchMode="true" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="4dp" android:hint="المستخدم" android:ems="10" android:inputType="textPersonName" android:fontFamily="monospace"/>
-            <EditText android:id="@+id/password" android:background="@color/white" android:padding="7dp" android:focusableInTouchMode="true" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="4dp" android:hint="كلمة المرور" android:ems="10" android:inputType="textPersonName" android:fontFamily="monospace"/>
-            <Button android:textColor="@color/white" android:id="@+id/connect" android:background="@color/teal_200" android:padding="7dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="8dp" android:layout_marginLeft="17dp" android:layout_marginRight="17dp" android:text="دخول" android:fontFamily="casual"/>
-        </LinearLayout>
+            <androidx.cardview.widget.CardView
+                android:layout_margin="@dimen/d4"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/c0"
+                app:cardCornerRadius="@dimen/d4"
+                app:cardElevation="@dimen/d4">
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/d5"
+        android:background="@color/red"
+        android:fontFamily="sans-serif-condensed"
+        android:textColor="@color/white" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_margin="@dimen/d4"
+                app:layout_constraintBottom_toTopOf="@+id/c2"
+                app:layout_constraintTop_toBottomOf="@id/c0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/c1"
+                app:cardElevation="@dimen/d4"
+                app:cardCornerRadius="@dimen/d4">
+
+    <EditText
+        android:id="@+id/ip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/d4"
+        android:background="@color/white"
+        android:ems="10"
+        android:focusableInTouchMode="true"
+        android:fontFamily="serif-monospace"
+        android:hint="@string/ip"
+        android:inputType="textPersonName"
+        android:padding="@dimen/d4"
+        android:autofillHints="@string/app_name" />
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_margin="@dimen/d4"
+               app:layout_constraintBottom_toTopOf="@id/c3"
+                app:layout_constraintTop_toBottomOf="@id/c1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/c2"
+                app:cardCornerRadius="@dimen/d4"
+                app:cardElevation="@dimen/d4">
+
+    <EditText
+        android:id="@+id/admin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/d4"
+        android:background="@color/white"
+        android:ems="10"
+        android:focusableInTouchMode="true"
+        android:fontFamily="serif-monospace"
+        android:hint="@string/user"
+        android:inputType="textPersonName"
+        android:padding="@dimen/d4"
+        android:autofillHints="@string/app_name" />
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_margin="@dimen/d4"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/c2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="@dimen/d4"
+                app:cardCornerRadius="@dimen/d4"
+                android:id="@+id/c3">
+
+            <EditText
+                android:id="@+id/password"
+                android:background="@color/white"
+                android:padding="@dimen/d4"
+                android:focusableInTouchMode="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/d4"
+                android:hint="@string/pass"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:fontFamily="serif-monospace"
+                android:autofillHints="@string/app_name" />
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
+
+    <Button
+        android:id="@+id/connect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/d4"
+        android:layout_marginLeft="@dimen/d5"
+        android:background="@color/teal_200"
+        android:fontFamily="serif-monospace"
+        android:padding="@dimen/d4"
+        android:text="@string/log"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linx"
+        android:layout_marginStart="@dimen/d5" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
