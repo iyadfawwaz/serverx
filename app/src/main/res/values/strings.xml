@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Ser</string>
+    <string name="PROF">الملف المستخدم</string>
+    <string name="PASS">كلمة المرور</string>
+    <string name="USER">اسم المستخدم</string>
+</resources>
