@@ -33,6 +33,7 @@ dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'sy.iyad:mikrotik:1.10.21.0'
+    implementation 'me.legrange:mikrotik:3.0.7'
     implementation 'com.google.firebase:firebase-messaging:20.3.0'
     implementation 'com.google.firebase:firebase-database:19.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.2'

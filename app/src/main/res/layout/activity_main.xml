@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -113,6 +114,8 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 
+
+
     <Button
         android:id="@+id/connect"
         android:layout_width="wrap_content"
@@ -130,5 +133,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linx"
         android:layout_marginStart="@dimen/d5" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/d4"
+        android:padding="@dimen/d4"
+        android:src="@drawable/syavatar"
+        app:layout_constraintTop_toBottomOf="@id/connect"
+       app:layout_constraintBottom_toTopOf="@id/floatingActionButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/d5"
+        android:layout_marginRight="@dimen/d5"
+        android:layout_marginBottom="@dimen/d5"
+        android:clickable="true"
+        android:contentDescription="@string/app_name"
+        android:focusable="true"
+        style="@style/Animation.Design.BottomSheetDialog"
+        android:src="@drawable/avatarx"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:srcCompat="@drawable/avatarx" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

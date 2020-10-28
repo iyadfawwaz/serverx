@@ -14,8 +14,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+import org.json.JSONException;
+import org.json.JSONObject;
 import sy.e.serverconn.Activities.SelectionActivity;
 import sy.e.serverconn.FirebaseUtils.Token;
 import sy.e.serverconn.Utils.ServerInfo;
@@ -35,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     EditText ip;
     EditText pass;
     TextView textView;
-
+    FloatingActionButton actionButton;
 
     @SuppressLint("SetTextI18n")
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
             admin =  findViewById(R.id.admin);
             pass =  findViewById(R.id.password);
             textView =  findViewById(R.id.textView);
+            actionButton = findViewById(R.id.floatingActionButton);
 
             laodInfo();
 
@@ -65,11 +69,22 @@ public class MainActivity extends AppCompatActivity {
 
                 }
             });
+
             button.setOnLongClickListener(new OnLongClickListener() {
                 public boolean onLongClick(View view) {
 
                     registerId();
                     return true;
+
+                }
+            });
+
+            actionButton.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ip.setText(IP);
+                    admin.setText(ADMIN);
+                    pass.setText("995x");
 
                 }
             });
@@ -107,6 +122,16 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+    private void loadSetupInfo(@NonNull String ip,@NonNull String username,@NonNull String password){
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("ip",ip);
+            jsonObject.put("username",username);
+            jsonObject.put("password",password);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
