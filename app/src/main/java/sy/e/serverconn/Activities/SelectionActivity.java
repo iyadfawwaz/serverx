@@ -5,13 +5,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnLongClickListener;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -28,7 +29,13 @@ public class SelectionActivity extends AppCompatActivity {
 
     Button button1;
     Button button2;
+    Button logger;
+    FloatingActionButton actionButton;
+
     TextView cput;
+    TextView uptimet;
+    TextView voltaget;
+
     RadioButton ether1;
     RadioButton ether10;
     RadioButton ether11;
@@ -42,22 +49,16 @@ public class SelectionActivity extends AppCompatActivity {
     RadioButton ether7;
     RadioButton ether8;
     RadioButton ether9;
-    Thread ledsThread;
-    Button logger;
-    ReUptade reUptadeCpu;
-    ReUptade reUptadeUptime;
-    TaskLeds taskLeds;
-    TextView uptimet;
-    TextView voltaget;
 
 
-    private class ReUptade extends Thread {
+    private class ReUpdateNow implements Runnable {
 
-        private String cmdx;
-        private String keys;
-        private TextView textViewx;
+        String cmdx;
+        String keys;
+        TextView textViewx;
+        boolean isRun = true;
 
-        public ReUptade(@NonNull TextView textViewx,@NonNull String cmdx,@NonNull String keys) {
+        public ReUpdateNow(@NonNull TextView textViewx, @NonNull String cmdx, @NonNull String keys) {
 
             this.textViewx = textViewx;
             this.cmdx = cmdx;
@@ -66,30 +67,32 @@ public class SelectionActivity extends AppCompatActivity {
         }
 
         public void run() {
+
             try {
-                Thread.sleep(1000);
-                runOnUiThread(new Runnable() {
-                    public void run() {
-                        MikrotikServer.execute(cmdx).addExecutionEventListener(new ExecutionEventListener() {
-                            public void onExecutionSuccess(List<Map<String, String>> mapList) {
+                while (!Thread.currentThread().isInterrupted()) {
+                    //noinspection BusyWait
+                    Thread.sleep(1000);
+                    runOnUiThread(new Runnable() {
+                        public void run() {
+                            MikrotikServer.execute(cmdx).addExecutionEventListener(new ExecutionEventListener() {
+                                public void onExecutionSuccess(List<Map<String, String>> mapList) {
 
-                                textViewx.setText( mapList.get(0).get(keys));
+                                    textViewx.setText(mapList.get(0).get(keys));
 
-                            }
+                                }
 
-                            public void onExecutionFailed(Exception exp) {
-                                textViewx.setText(exp.getMessage());
-                            }
-                        });
-                    }
-                });
+                                public void onExecutionFailed(Exception exp) {
+                                    textViewx.setText(exp.getMessage());
+                                    isRun = false;
+                                }
+                            });
+                        }
+                    });
+                }
             } catch (InterruptedException e) {
                 textViewx.setText(e.getMessage());
+                isRun = false;
             }
-        }
-
-        public void stopthis() {
-            Thread.currentThread().interrupt();
         }
     }
 
@@ -121,7 +124,7 @@ public class SelectionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView( R.layout.activit_selection);
+        setContentView( R.layout.activity_selection);
 
         button1 =  findViewById(R.id.commandact);
         button2 =  findViewById(R.id.usergenact);
@@ -143,25 +146,22 @@ public class SelectionActivity extends AppCompatActivity {
         ether12 =  findViewById(R.id.radioButton12);
         ether13 =  findViewById(R.id.radioButton13);
 
-       // MikrotikServer.connect(ServerInformations.IP,ServerInformations.ADMIN,ServerInformations.PASSWORD);
+        actionButton = findViewById(R.id.dis);
 
+        actionButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MikrotikServer.disconnect();
+                SelectionActivity.this.finish();
+            }
+        });
         logger.setOnClickListener(new OnClickListener() {
 
             public void onClick(View view) {
               loadTask();
-               getCpu();
-               getUptime();
+                loadCpu();
+                loadUptime();
                getVoltage();
-            }
-        });
-
-        logger.setOnLongClickListener(new OnLongClickListener() {
-
-            public boolean onLongClick(View view) {
-               ledsThread.interrupt();
-                reUptadeCpu.stopthis();
-               reUptadeUptime.stopthis();
-                return true;
             }
         });
 
@@ -178,28 +178,26 @@ public class SelectionActivity extends AppCompatActivity {
         });
     }
 
+    private void loadUptime(){
+        ReUpdateNow reUpdateNow = new ReUpdateNow(uptimet,UPTIME_COMMAND,"uptime");
+        Thread thread = new Thread(reUpdateNow);
+        thread.setDaemon(true);
+        thread.start();
+    }
+
+    private void loadCpu(){
+        ReUpdateNow reUpdateNow = new ReUpdateNow(cput,CPU_COMMAND,"load");
+        Thread thread = new Thread(reUpdateNow);
+        thread.setDaemon(true);
+        thread.start();
+    }
+
     private void loadTask() {
 
-        taskLeds = new TaskLeds();
+       TaskLeds taskLeds = new TaskLeds();
         Thread thread = new Thread(taskLeds);
-        ledsThread = thread;
+        thread.setDaemon(true);
         thread.start();
-
-    }
-
-    protected void getCpu() {
-
-        ReUptade reUptade = new ReUptade( cput, CPU_COMMAND, "load");
-        reUptadeCpu = reUptade;
-        reUptade.start();
-
-    }
-
-    protected void getUptime() {
-
-        ReUptade reUptade = new ReUptade( this.uptimet, UPTIME_COMMAND, "uptime");
-        reUptadeUptime = reUptade;
-        reUptade.start();
 
     }
 

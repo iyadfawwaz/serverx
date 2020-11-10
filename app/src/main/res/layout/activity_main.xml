@@ -161,5 +161,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:srcCompat="@drawable/avatarx" />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/regis"
+        android:layout_width="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:src="@drawable/symain"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/red"
+        android:contentDescription="@string/app_name"
+        tools:ignore="UnusedAttribute" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

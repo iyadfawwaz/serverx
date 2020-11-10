@@ -4,6 +4,7 @@ package sy.e.serverconn;
 public class ServerInformations {
 
     public static final String[] SERVERKEYWORDS={
+            "system",
             "caps-man"    , "console" , "file"    ,   "ip"  ,  "log"     ,    "mpls"    ,  "partitions" , "ppp"  ,  "ra",
             "certificate" , "disk"  ,   "interface" , "ipv6" , "metarouter" , "openflow"  ,"port"    ,    "queue" , "ro",
 

@@ -6,43 +6,43 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
-
+import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import sy.e.serverconn.R;
 
 
-public class ServerAdapter extends ArrayAdapter<String> {
+public class ServerAdapter extends RecyclerView.Adapter<ServerViewHolder> {
 
     ArrayList<String> arrayList;
     Context context;
 
-    public ServerAdapter(@NonNull Context context,@NonNull ArrayList<String> arrayList) {
+    public ServerAdapter(@NonNull ArrayList<String> arrayList) {
 
-        super(context, 0, arrayList);
         this.arrayList = arrayList;
-        this.context = context;
 
     }
 
-    public int getCount() {
-        return this.arrayList.size();
+
+    @NonNull
+    @Override
+    public ServerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new ServerViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.activityadapter,parent,false));
     }
 
-    @SuppressLint("ViewHolder")
-    public View getView(int position, @NonNull View convertView, @NonNull ViewGroup parent) {
+    @SuppressLint("SetTextI18n")
+    @Override
+    public void onBindViewHolder(@NonNull ServerViewHolder holder, int position) {
 
         String string = arrayList.get(position);
-        if (convertView == null) {
+        holder.all.setText(string);
+        holder.num.setText(""+(position+1));
 
-            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.activityadapter, parent, false);
-            TextView textView = convertView.findViewById(R.id.container);
-            textView.setText(string);
-        }
-        return convertView;
     }
 
+    @Override
+    public int getItemCount() {
+        return arrayList.size();
+    }
 }

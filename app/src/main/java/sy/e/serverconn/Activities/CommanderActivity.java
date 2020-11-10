@@ -11,11 +11,12 @@ import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.MultiAutoCompleteTextView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -38,7 +39,7 @@ public class CommanderActivity extends AppCompatActivity {
     Button button;
     MultiAutoCompleteTextView comm;
     EditText keyg;
-    ListView listView;
+   RecyclerView recyclerView;
     TextView textView;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +47,7 @@ public class CommanderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_commander);
 
-        listView =  findViewById(R.id.listview);
+       recyclerView = findViewById(R.id.recyclerview);
         textView =  findViewById(R.id.warn);
         comm =  findViewById(R.id.command);
         keyg =  findViewById(R.id.key);
@@ -68,8 +69,9 @@ public class CommanderActivity extends AppCompatActivity {
     private void init(){
 
         arrayList = new ArrayList<>();
-        adapter = new ServerAdapter(this, arrayList);
-        listView.setAdapter(adapter);
+        adapter = new ServerAdapter( arrayList);
+       recyclerView.setLayoutManager(new LinearLayoutManager(this));
+       recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
         stringArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line,SERVERKEYWORDS);
@@ -83,8 +85,7 @@ public class CommanderActivity extends AppCompatActivity {
 
 
     private void sendComm(String command, final String key) {
-
-        adapter.clear();
+        
         arrayList.clear();
 
         init();
@@ -96,6 +97,8 @@ public class CommanderActivity extends AppCompatActivity {
                 if (key.equals("")) {
 
                     arrayList.add(mapList.toString());
+                    System.out.println(mapList.toString());
+                    adapter.notifyDataSetChanged();
 
                 }else {
 
@@ -103,13 +106,15 @@ public class CommanderActivity extends AppCompatActivity {
 
                     if (!map.get(key).isEmpty()) {
                         arrayList.add(map.get(key));
+                        System.out.println(map.get(key));
                     }else {
                         textView.setText("empty");
                     }
                     }
-                }
                 adapter.notifyDataSetChanged();
-                textView.setText(""+adapter.getCount());
+                }
+
+                textView.setText(""+adapter.getItemCount());
             }
 
             public void onExecutionFailed(@NonNull Exception exception) {

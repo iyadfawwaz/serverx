@@ -15,8 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.messaging.FirebaseMessaging;
 import org.json.JSONException;
 import org.json.JSONObject;
 import sy.e.serverconn.Activities.SelectionActivity;
@@ -33,12 +32,10 @@ import  static sy.e.serverconn.ServerInformations.PASSWORD;
 public class MainActivity extends AppCompatActivity {
 
 
-    EditText admin;
+    EditText admin,ip,pass;
     Button button;
-    EditText ip;
-    EditText pass;
     TextView textView;
-    FloatingActionButton actionButton;
+    FloatingActionButton actionButton,registerToken;
 
     @SuppressLint("SetTextI18n")
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +48,16 @@ public class MainActivity extends AppCompatActivity {
             pass =  findViewById(R.id.password);
             textView =  findViewById(R.id.textView);
             actionButton = findViewById(R.id.floatingActionButton);
+            registerToken = findViewById(R.id.regis);
 
             laodInfo();
 
+            registerToken.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    registerId();
+                }
+            });
             button.setOnClickListener(new OnClickListener() {
 
                 public void onClick(View view) {
@@ -114,14 +118,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void registerId() {
-        FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(this, new OnCompleteListener<InstanceIdResult>() {
-            public void onComplete(@NonNull Task<InstanceIdResult> task) {
+
+        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
+
+            @Override
+            public void onComplete(@NonNull Task<String> task) {
                 if (task.isSuccessful() && task.getResult() != null) {
-                    ServerInfo.tokenReference.push().setValue(new Token( task.getResult().getToken()));
+                    ServerInfo.tokenReference.push().setValue(new Token( task.getResult()));
                     ServerInfo.isRegistered = true;
                 }
             }
         });
+
     }
     private void loadSetupInfo(@NonNull String ip,@NonNull String username,@NonNull String password){
         JSONObject jsonObject = new JSONObject();
@@ -137,8 +145,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if (!ServerInfo.isRegistered){
-            registerId();
+
+        if (MikrotikServer.getApi() != null && MikrotikServer.isConnected()){
+            startActivity(new Intent(this,SelectionActivity.class));
         }
+
     }
 }
